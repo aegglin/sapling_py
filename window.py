@@ -30,14 +30,12 @@ while True:
             pygame.quit()
             exit()
 
-        
-
         # TODO: what should be in these? 
         beetle.update()
         beetle.draw()
 
         window.fill((20, 18, 167, 167))
         
-        window.blit(beetle.curr_sprite, (0, 0))
+        window.blit(beetle.curr_sprite, (beetle.x, beetle.y))
         pygame.display.update()
         clock.tick(60) # 60 fps
