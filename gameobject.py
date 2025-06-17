@@ -1,16 +1,13 @@
 import pygame
 from abc import ABC, abstractmethod
 
-
 from direction import Direction
-from window import GameWindow
 
 class GameObject(ABC):
-    def __init__(self, x, y, speed, window):
+    def __init__(self, x, y, speed):
         self.x = x
         self.y = y
         self.speed = speed
-        self.window = window
         self.direction = Direction.DOWN
 
     @abstractmethod
@@ -30,11 +27,15 @@ class GameObject(ABC):
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.direction = Direction.DOWN
             self.y += self.speed
-            if self.y + GameWindow.TILE_SIZE > GameWindow.GAME_HEIGHT:
-                self.y = GameWindow.GAME_HEIGHT - GameWindow.TILE_SIZE
-        if (keys[pygame.K_LEFT] or keys[pygame.K_a]) and self.x - self.speed >= 0:
+            if self.y + 48 > window_height:
+                self.y = window_height - 48
+        if (keys[pygame.K_LEFT] or keys[pygame.K_a]):
             self.direction = Direction.LEFT
             self.x -= self.speed
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d] and self.x + self.speed <= window_width:
+            if self.x < 0:
+                self.x = 0
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction = Direction.RIGHT
             self.x += self.speed
+            if self.x + 48 > window_width:
+                self.x = window_width - 48

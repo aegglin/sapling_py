@@ -6,8 +6,8 @@ from gameobject import GameObject
 
 class Beetle(GameObject):
 
-    def __init__(self, x, y, speed, window):
-        GameObject.__init__(self, x, y, speed, window)
+    def __init__(self, x, y, speed):
+        GameObject.__init__(self, x, y, speed)
         # images
         self.down1 = utils.load_image("assets", "BeetleDown1.png")
         self.down1 = pygame.transform.scale(self.down1, (48, 48))
