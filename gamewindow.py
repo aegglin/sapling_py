@@ -13,7 +13,7 @@ class GameWindow:
         pygame.display.set_caption('Sapling by Aiden Egglin')
         self.clock = pygame.time.Clock()
 
-        self.beetle = Beetle(constants.STARTING_X, constants.STARTING_Y, 15, self)
+        self.beetle = Beetle(constants.STARTING_X, constants.STARTING_Y, 4, self)
         pygame.display.set_icon(self.beetle.down1)
 
     def run(self):
@@ -26,7 +26,7 @@ class GameWindow:
             self.beetle.update()
             self.beetle.draw()
 
-            self.window.fill((20, 18, 167, 167))
+            self.window.fill((255, 255, 255, 0))
             self.window.blit(self.beetle.curr_sprite, (self.beetle.x, self.beetle.y))
             pygame.display.update()
             self.clock.tick(constants.FPS) # 60 fps
