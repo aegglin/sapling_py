@@ -1,6 +1,7 @@
 import pygame 
 from sys import exit
 from beetle import Beetle
+from map_tile_handler import MapTileHandler
 
 import constants
 
@@ -15,6 +16,7 @@ class GameWindow:
 
         self.beetle = Beetle(constants.STARTING_X, constants.STARTING_Y, 4, self)
         pygame.display.set_icon(self.beetle.down1)
+        self.map_tile_handler = MapTileHandler('assets/maps/map1.txt')
 
     def run(self):
         while True:
