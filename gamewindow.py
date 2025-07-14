@@ -16,7 +16,7 @@ class GameWindow:
 
         self.beetle = Beetle(constants.STARTING_X, constants.STARTING_Y, 4, self)
         pygame.display.set_icon(self.beetle.down1)
-        self.map_tile_handler = MapTileHandler('assets/maps/map1.txt')
+        self.map_tile_handler = MapTileHandler('assets/maps/map1.txt', self)
 
     def run(self):
         while True:
@@ -24,7 +24,7 @@ class GameWindow:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-
+            self.map_tile_handler.draw_all()
             self.beetle.update()
             self.beetle.draw()
 
