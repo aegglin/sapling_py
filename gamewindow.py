@@ -28,8 +28,6 @@ class GameWindow:
             self.beetle.update()
             self.beetle.draw()
 
-            self.window.fill((255, 255, 255, 0))
-            self.window.blit(self.beetle.curr_sprite, (self.beetle.x, self.beetle.y))
             pygame.display.update()
             self.clock.tick(constants.FPS) # 60 fps
 

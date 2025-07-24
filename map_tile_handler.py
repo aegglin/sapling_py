@@ -31,7 +31,7 @@ class MapTileHandler:
 
     def create_tile_image(self, directory, filename, is_solid):
         tile = Tile(directory, filename, is_solid)
-        pygame.transform.scale(tile, (constants.TILE_SIZE, constants.TILE_SIZE))
+        tile.image = pygame.transform.scale(tile.image, (constants.TILE_SIZE, constants.TILE_SIZE))
         self.map_tiles.append(tile)
 
     def load_images(self):
@@ -52,4 +52,4 @@ class MapTileHandler:
             for j, col in enumerate(row):
                 curr_number = self.map_tile_numbers[i][j]
                 tile = self.map_tiles[curr_number]
-                self.game_window.window.blit(tile, (300, 300))
+                self.game_window.window.blit(tile.image, (constants.TILE_SIZE * i, constants.TILE_SIZE * j))
