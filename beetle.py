@@ -65,7 +65,7 @@ class Beetle(GameObject):
             elif self.curr_sprite_number == 2:
                 self.curr_sprite = self.left2
 
-        self.game_window.window.blit(self.curr_sprite, (self.x, self.y))
+        self.game_window.window.blit(self.curr_sprite, (self.camera_x, self.camera_y))
 
     
     def update(self):
@@ -79,24 +79,24 @@ class Beetle(GameObject):
 
             if keys[pygame.K_UP] or keys[pygame.K_w]:
                 self.direction = Direction.UP
-                self.y -= self.speed
-                if self.y < 0:
-                    self.y = 0
+                self.world_y -= self.speed
+                if self.world_y < 0:
+                    self.world_y = 0
             if keys[pygame.K_DOWN] or keys[pygame.K_s]:
                 self.direction = Direction.DOWN
-                self.y += self.speed
-                if self.y + 48 > window_height:
-                    self.y = window_height - 48
+                self.world_y += self.speed
+                if self.world_y + 48 > window_height:
+                    self.world_y = window_height - 48
             if keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 self.direction = Direction.LEFT
-                self.x -= self.speed
-                if self.x < 0:
-                    self.x = 0
+                self.world_x -= self.speed
+                if self.world_x < 0:
+                    self.world_x = 0
             if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                 self.direction = Direction.RIGHT
-                self.x += self.speed
-                if self.x + 48 > window_width:
-                    self.x = window_width - 48
+                self.world_x += self.speed
+                if self.world_x + 48 > window_width:
+                    self.world_x = window_width - 48
 
             self.curr_sprite_frame_count += 1
             if self.curr_sprite_frame_count > constants.SPRITE_FRAME_SWITCH_THRESHOLD:

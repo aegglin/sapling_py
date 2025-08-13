@@ -10,7 +10,7 @@ class GameWindow:
 
     def __init__(self):
         pygame.init()
-        self.window = pygame.display.set_mode((constants.GAME_WIDTH, constants.GAME_HEIGHT))
+        self.window = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
         pygame.display.set_caption('Sapling by Aiden Egglin')
         self.clock = pygame.time.Clock()
 
