@@ -1,7 +1,6 @@
 import pygame
 
 from tile import Tile
-from utils import load_image
 
 import constants
 
@@ -48,8 +47,23 @@ class MapTileHandler:
         self.create_tile_image('assets/tiles', 'Tree1_Woodpecker1.png', True)
 
     def draw_all(self):
-        for i, row in enumerate(self.map_tile_numbers):
-            for j, col in enumerate(row):
+        for i, world_col in enumerate(self.map_tile_numbers):
+            for j, world_row in enumerate(world_col):
                 curr_number = self.map_tile_numbers[i][j]
                 tile = self.map_tiles[curr_number]
-                self.game_window.window.blit(tile.image, (constants.TILE_SIZE * i, constants.TILE_SIZE * j))
+
+                world_x = world_col * constants.TILE_SIZE
+                world_y = world_row * constants.TILE_SIZE
+
+                camera_x = world_x - self.game_window.beetle.world_x + self.game_window.beetle.world_x
+                camera_y = world_y - self.game_window.beetle.world_y + self.game_window.beetle.world_y
+
+
+                if world_x + constants.TILE_SIZE > self.game_window.beetle.world_x - self.game_window.beetle.camera_x and \
+                    world_x - constants.TILE_SIZE < self.game_window.beetle.world_x + self.game_window.beetle.camera_x and \
+                    world_y + constants.TILE_SIZE > self.game_window.beetle.world_y - self.game_window.beetle.camera_y and \
+                    world_y - constants.TILE_SIZE < self.game_window.beetle.world_y + self.game_window.beetle.camera_y:
+
+                        self.game_window.window.blit(tile.image, (camera_x, camera_y))
+
+

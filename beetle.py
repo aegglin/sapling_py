@@ -3,13 +3,13 @@ import pygame
 import constants
 import utils
 from direction import Direction
-from gameobject import GameObject
+from game_object import GameObject
 
 
 class Beetle(GameObject):
 
-    def __init__(self, x, y, speed, game_window):
-        GameObject.__init__(self, x, y, speed)
+    def __init__(self, world_x, world_y, speed, game_window):
+        GameObject.__init__(self, world_x, world_y, speed)
         # images
         self.down1 = utils.load_image("assets/beetle", "BeetleDown1.png")
         self.down1 = pygame.transform.scale(self.down1, (constants.TILE_SIZE, constants.TILE_SIZE))
@@ -37,6 +37,11 @@ class Beetle(GameObject):
         self.curr_sprite = self.down1
         self.curr_sprite_number = 1
         self.curr_sprite_frame_count = 0
+
+        offset = constants.TILE_SIZE / 2
+
+        self.camera_x = constants.SCREEN_WIDTH / 2 - offset
+        self.camera_y = constants.SCREEN_HEIGHT / 2 - offset
     
     def draw(self):
         if self.direction == Direction.UP:
